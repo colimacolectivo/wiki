@@ -5,7 +5,7 @@ This guide will show you the best way to install Ruby with the RubyVersionManage
 
 You can use the RVM with all the Unix/Linux operating systems and it's a tool that is easy to install if you are involved with the command-line environment.
 
-This guide works for most of the operating systems, that includes Mac OS X and Ubuntu, you just need to recognize wich tool you use for package installing like [Homebrew](http://mxcl.github.com/homebrew/), [MacPorts](http://www.macports.org/), (Aptitude)[http://wiki.debian.org/Aptitude], (apt-get)[http://www.apt-get.org/]. We will use the apt-get from [Ubuntu](http://www.ubuntu.com/).
+This guide works for most of the operating systems, that includes Mac OS X and Ubuntu, you just need to recognize wich tool you use for package installing like [Homebrew](http://mxcl.github.com/homebrew/), [MacPorts](http://www.macports.org/), [Aptitude](http://wiki.debian.org/Aptitude), [apt-get](http://www.apt-get.org/). We will use the apt-get from [Ubuntu](http://www.ubuntu.com/).
 
 You need to ensure that you have the following packages installed on your Operating System:
 
