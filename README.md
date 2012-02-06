@@ -19,6 +19,11 @@ And place the following line inside the `.rvmrc` file
 
     rvm --create 1.9.2@olelo-wiki
 
+then make sure that your rvm is working in gemset correct
+
+    $ source .rvmrc
+    $ rvm current        #ruby-1.9.2-p290@olelo-wiki
+
 Then create your [Gemfile](http://gembundler.com/gemfile.html):
 
     $ touch Gemfile
