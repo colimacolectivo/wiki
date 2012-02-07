@@ -59,7 +59,7 @@ And then run:
 
 And you'll be able to launch your gitwiki app just with typing:
 
-    $unicorn
+    $ unicorn
 
 Now open your browser and launch the application on `http://localhost:8080/`, this acction will trigger the git engine of the application, and will create you an empty repository inside of a hidden directory on your app path like:
 
