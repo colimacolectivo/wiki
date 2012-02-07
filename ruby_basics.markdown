@@ -1890,4 +1890,5 @@ it again, run even more tests, and so on. It ends up making tests far more compa
 a lot of duplication
 
 
+This is a summary from [Programming Ruby](http://pragprog.com/book/ruby/programming-ruby) book
 
