@@ -23,7 +23,7 @@ ruby has 2 main modes:
 
 On the first one, the code is interpreted line by linte, while on the other one, code is loaded on memory and then executed
 
-#### IRB
+### IRB
 
 irb interactive ruby bash is a console to write and test code ruby directly on it.
 on irb we can do many test for example, this tool can use to learn what methods or clasess have an object
@@ -44,7 +44,7 @@ the result of this piece of code is  a simple arithmetic sum between n1 and n2 e
 
 We need to add more info about this
 
-#### Running a rb file on ruby on bash
+### Running a rb file on ruby on bash
 
 the normal way to write ruby is to put them in one file and we can try our code on the console executing it directly load the file whit the console example to load a file an test what is the result
 whit vim create a file white the name "sample1.rb" and puts this piece of code:
@@ -54,307 +54,12 @@ whit vim create a file white the name "sample1.rb" and puts this piece of code:
 
 We'll start to talk more about Ruby and it's technical features, and if you wanna taste the Ruby's flavor at the same time that you are reding this, I recommend you to use the irb "Interactive Ruby" command-line environment just by using this command:
 
-    $ irb
-    ruby-1.9.2-p290 :001 > 
-
-And now you'll be able to see what's happening on every step on this tutorial.
 
 ### Standard types
 
 Ruby supports integer, float, rational, complex, strings, and almost every standard type that you need to use whe you are developing with ruby.
 
-- Arrays:
-
-are idexed collections. this type of variable can be accesible using a key its a very efficient to access array data.
-the arrays have many methods and if you whants to know what methods  included his class  you can use :array.public_methods to show the public methods
-in ruby the array indices start at zero.
-
-The arrays on ruby can be defined as follows
-
-      [1,2,'ruby on rails']
-      %w(number1,number2,number3,etc)
-
-Example:
-create a new file called arrays.rb and write the next:
-
-      array = %w( a b c d e f g )
-      puts array.collect {|e| puts e }
-      puts array.reverse
-      puts array.reverse.join(' ')
-
-for test the code just run : 
-
-      ruby arrays.rb
-      =>a
-      =>b
-      =>c
-      =>d
-      =>e
-      =>f
-      =>g
-      =>g f e d c b a 
-
-the code array.collect throught each position or element in array variable and puts the value on console
-the method reverse sort the content of array in order ascendent or descendent. using the last method joins all 
-values content in each position in array separate by colons. returns only one string.
-
-      =>a b c d e f g
-
-the first one each element must be separated whit a semicolon and if you write a string should be enclosed
-another one  only can contain single phrases or single words if contains words whit blank space you must be defined it whit the first form
-
-      class Array
-        def sum
-          self.inject :+
-        end
-      end
-
-the previos code add a method to the class Array this method  in ruby all is an object and exteds the functionality is very simple
-and this is a little example. to use the method only needs type the next: the ruby interpreter and the file name
-
-      ruby sample1.rb
-        [2,3,2,4].sum
-      =>11
-
-- Hashes
-
-Hashes are also indexed collections but is very different from arrays(some times know as assiciative arrays,maps or ditcionaries)
-this variables accept or support any object as key. the hashes provide more flexibility than a arrays.
-Hoever, althought you index arrays with integers,you can index array with objects of any type: simbols,strings,regular expressions,and so on.
-the syntax of a hash is name_variable={'index'=>'value','index2'=>'value2'}. to retrieve a value from hash called h we can do this:
-
-      h['index'] # => "value"
-      h['index2'] # =>"value2"
-
-to know how many elements contains  hash h run the command:
-
-      h.length #=>2
-
-- Classeses
-
-in Ruby language a class is used to construct an object. A class is a blueprint for an object for example we might use a button class to make many 
-differents buttons, and each button might have its own color,size,etc.. properties in other words an Object is ainstance of a class
-
-let's see  an example of class definition
-
-      class Tangosource
-
-        attr_accesor :writable
-        attr_reader :readable
-
-        def initialize
-          @writable = Time.now
-          @readable = Time.now
-        end
-
-        def self.test
-          t1 = Tangosource.new
-          t2 = Tangosource.new
-
-          puts."t1.writable"
-          puts t1.writable
-
-          sleep(2)
-
-          t1.writable = Time.now
-
-          puts "t1.writable"
-          puts t1.writable
-
-        end
-
-      end
-
-- Generation of code blocks
-
-In ruby is to easier create new functionalities for example if we needs formater a text input
-whit a especific format just needs create a method that return the text input as in the following example
-
-we create a file called blocks.rb inside the file write the following code:
-
-      def super_puts
-        puts "*****************************"
-        yield(Time.now)
-        puts "*****************************"
-      end
-
-      super_puts{|x| puts 'value'}
-      
-      super_puts do |x|
-        puts 'value'
-        puts x
-      end
-
-- Structures of controll
-
-#### If, else
-
-An "if" expresion on Ruby it's pretty similar than any other language:
-
-      1.9.2-p290 :001 > today = "Monday"
-      1.9.2-p290 :002 > if today == "Monday"
-      1.9.2-p290 :003?>   puts "I hate mondays"
-      1.9.2-p290 :004?>   else
-      1.9.2-p290 :005 >     puts "What a nice day"
-      1.9.2-p290 :006?>   end
-      I hate mondays
-       => nil    
-
-There is another way to evaluate the if statement, by using "unless" like: 
-
-      1.9.2-p290 :001 > today = "Monday"
-      1.9.2-p290 :002 > unless today == "Monday"
-      1.9.2-p290 :003?>   puts "what a nice day!"
-      1.9.2-p290 :004?>   end
-       => nil 
-      1.9.2-p290 :005 > today = "Tuesday"
-      1.9.2-p290 :006 > unless today == "Monday"
-      1.9.2-p290 :007?>   puts "What a nice day"
-      1.9.2-p290 :008?>   end
-      What a nice day
-       => nil     
-
-#### for
-
-      for variable [, variable ...] in expression [do]
-         code
-      end
-
-#### each
-
-      (0..5).each do |i|
-         puts "Value of local variable is #{i}"
-      end
-
-#### while
-
-      while conditional [do]
-         code
-      end
-
-### *RI
-
-To find the documentation for a class, type ri ClassName. 
-For example, the following is the summary information for the GC class.
-(To get a list of classes with ri documentation, type ri with no arguments.)
-
-### Chapter 5: 'Sharing Functionality'
-
-#### Inheritance
-
-Inheritance allows you to create a class that is a refinement or specialization of another class.
-This class is called a subclass of the original, and the original is a superclass of the subclass.
-People also talk of child and parent classes.
-
-      class Parent                      # Declarating the parent class                      
-        def say_hello                   # Declaring the function
-          puts "Hello from #{self}"     # Printing the result
-        end 
-      end
-
-      p = Parent.new                    # Creating the parent class instance
-      p.say_hello                       # Executing the parent class method
-
-      # Subclass the parent...
-
-      class Child < Parent              # Declarating a child class from the superclass 'Parent' called 'Child'
-      end
-
-      c = Child.new                     # Creating the Child class instance
-      c.say_hello                       # Executing the inheritanced method
-
-        produces:
-        Hello from #<Parent:0x0000010086b220> 
-        Hello from #<Child:0x0000010086b108>
-
-A parent class assumes that it will be subclassed and calls a method that it expects its children to implement.
-This allows the parent to take on the brunt of the processing but to invoke what are effectively hook methods 
-in subclasses to add application-level functionality.
-
-#### Modules
-
-Modules are a way of grouping together methods, classes, and constants. Modules give you two major benefits:
-
-1 Modules provide a namespace and prevent name clashes.
-
-2 Modules support the mixin facility.
-
-      module Trig                               # Declarating the module called 'Tring'
-      PI = 3.141592654                          # Defining 'PI' constant 
-        def Trig.sin(x)                         # Defining 'sin' function
-          # ..                        
-        end 
-
-        def Trig.cos(x)                         # Declarating 'cos' function 
-          # ..
-        end 
-      end
-
-      module Moral                              # Declarating the module called 'Tring'
-      VERY_BAD  = 0                             # Defining 'VERY_BAD' variable
-      BAD	      = 1                             # Defining 'BAD' variable
-        def Moral.sin(badness)                  # Defining 'sin' fuction
-          # ...
-        end 
-      end
-
-      require_relative 'trig'                   # Including 'trig' module
-      require_relative 'moral'                  # Including 'moral' module
-      y = Trig.sin(Trig::PI/4)                  # Executing sin function over Trig module
-      wrongdoing = Moral.sin(Moral::VERY_BAD)   # Executing sim fuction over Moral module
-
-
-
-As with class methods, you call a module method by preceding its name with the module’s name and a period,
-and you reference a constant using the module name and two colons.
-
-
-#### Mixins
-Modules have another, wonderfull use. at a stroke, they pretty much eliminate the nedd for inheritance, providing a facility called a mixin
-you can include a module within a class fefinition. allowing access to all included in the module how metodos of  class itself
-
-     module Debug                                # Definition a module "Debug"
-       def who_am_i?                             # Definition a method
-         "#{self.class.name} (id: #{self.object_id}): #{self.name}"
-       end
-     end
-
-     class Phonograph                            #Another definition of a module
-       include Debug                             #including the metod Debug
-       attr_reader :name                         #definition a attribute accesor
-       def initialize(name)                      #defining class initialize method
-         @name = name
-       end
-       # ...
-     end
-
-     class EightTrack                           #another class whit the inclusion of "Debug"
-       include Debug
-       attr_reader :name
-       def initialize(name)
-         @name = name
-       end
-       # ...
-     end
-
-      ph = Phonograph.new("West End Blues")
-      et = EightTrack.new("Surrealistic Pillow")
-      
-      ph.who_am_i? # => "Phonograph (id: 2151894340): West End Blues"
-      et.who_am_i? # => "EightTrack (id: 2151894300): Surrealistic Pillow"
-
-      #As you can see each class contains the method defined in the module "Debug" this is the functionality of the modules and heritage and is known as mixin
-
-**Explanation**
-
-A module is a collection of methods that can be included in many classes and each class can access the method comprising the module.
-in other words is a way to not repeat code in one class and another through the modules you can add functionality to a class without having to be inherited from another class.
-therefore a "Mixin" the use of inheritance and modules in a class
-
-### Chapter 6 'Standar Types'
-
-#### Numbers
-
+- Numbers
 
 Ruby supports integers and ﬂoating-point, rational, and complex numbers. Integers can be any
 length. Integers within a certain range (normally −230 ...230 -1 or −262 ...262 -1) are held internally in binary form
@@ -463,7 +168,7 @@ As with other iterators, if you leave the block off, the call returns an Enumera
       2:8
       3:7
 
-#### Strings
+- Strings
 
 Ruby strings are simply sequences of characters. They normally hold printable characters,
 but that is not a requirement; a string can also hold binary data. Strings are objects of class
@@ -537,7 +242,110 @@ a vertical bar, optionally surrounded by spaces. And, because the line read from
 trailing newline, we’ll use String#chomp to strip it off just before we apply the split. We’ll store
 details of each song in a Struct that contains an attribute for each of the three ﬁelds. (A Struct is
 
-### Chapter 7 'Regular Expressions'
+- Arrays:
+
+are idexed collections. this type of variable can be accesible using a key its a very efficient to access array data.
+the arrays have many methods and if you whants to know what methods  included his class  you can use :array.public_methods to show the public methods
+in ruby the array indices start at zero.
+
+The arrays on ruby can be defined as follows
+
+      [1,2,'ruby on rails']
+      %w(number1,number2,number3,etc)
+
+Example:
+create a new file called arrays.rb and write the next:
+
+      array = %w( a b c d e f g )
+      puts array.collect {|e| puts e }
+      puts array.reverse
+      puts array.reverse.join(' ')
+
+for test the code just run : 
+
+      ruby arrays.rb
+      =>a
+      =>b
+      =>c
+      =>d
+      =>e
+      =>f
+      =>g
+      =>g f e d c b a 
+
+the code array.collect throught each position or element in array variable and puts the value on console
+the method reverse sort the content of array in order ascendent or descendent. using the last method joins all 
+values content in each position in array separate by colons. returns only one string.
+
+      =>a b c d e f g
+
+the first one each element must be separated whit a semicolon and if you write a string should be enclosed
+another one  only can contain single phrases or single words if contains words whit blank space you must be defined it whit the first form
+
+      class Array
+        def sum
+          self.inject :+
+        end
+      end
+
+the previos code add a method to the class Array this method  in ruby all is an object and exteds the functionality is very simple
+and this is a little example. to use the method only needs type the next: the ruby interpreter and the file name
+
+      ruby sample1.rb
+        [2,3,2,4].sum
+      =>11
+
+- Hashes
+
+Hashes are also indexed collections but is very different from arrays(some times know as assiciative arrays,maps or ditcionaries)
+this variables accept or support any object as key. the hashes provide more flexibility than a arrays.
+Hoever, althought you index arrays with integers,you can index array with objects of any type: simbols,strings,regular expressions,and so on.
+the syntax of a hash is name_variable={'index'=>'value','index2'=>'value2'}. to retrieve a value from hash called h we can do this:
+
+      h['index'] # => "value"
+      h['index2'] # =>"value2"
+
+to know how many elements contains  hash h run the command:
+
+      h.length #=>2
+
+- Symbols
+
+Symbol objects represent names and some strings inside the Ruby interpreter. They are generated using the :name and :"string" literals syntax,
+and by the various to_sym methods. The same Symbol object will be created for a given name or string for the duration of a program's execution,
+regardless of the context or meaning of that name. Thus if Fred is a constant in one context, a method in another, and a class in a third,
+the Symbol :Fred will be the same object in all three contexts.
+
+      module One
+        class Fred
+        end
+        $f1 = :Fred
+      end
+      module Two
+        Fred = 1
+        $f2 = :Fred
+      end
+      def Fred()
+      end
+      $f3 = :Fred
+      $f1.object_id   #=> 2514190
+      $f2.object_id   #=> 2514190
+      $f3.object_id   #=> 2514190
+
+- Constans
+
+A Ruby constant is like a variable, except that its value is supposed to remain constant for the duration of the program.
+Lexically, the names of constants look like the names of local variables, except that they begin with a capital letter.
+By convention, most constants are written in all uppercase with underscores to separate words, LIKE_THIS. Ruby class and module names are also constants,
+but they are conventionally written using initial capital letters and camel case, LikeThis.
+
+      A_CONST = "Doshi"  
+      B_CONST = A_CONST  
+      A_CONST[0] = "J" # alter string referenced by constant  
+      puts A_CONST # displays Joshi  
+      puts B_CONST # also displays Joshi  
+
+- Regular Expressions
 
 A regular expression is a pattern that can be matched against a string. It can be a simple pattern, such as the string must contain the sequence of letters “cat”, or the pattern can be complex, such as the string must start with a protocol identifier, followed by two literal forward slashes, followed by..., and so on
 
@@ -732,7 +540,55 @@ Normally, the definition of the group is itself matched as part of executing the
 if you add the suffix {0} to the group, it means “zero matches of this group,” 
 so the group is not executed when first encountered
 
-### Chapter 8 'More About Methods'
+## Structures of controll
+
+### If, else
+
+An "if" expresion on Ruby it's pretty similar than any other language:
+
+      1.9.2-p290 :001 > today = "Monday"
+      1.9.2-p290 :002 > if today == "Monday"
+      1.9.2-p290 :003?>   puts "I hate mondays"
+      1.9.2-p290 :004?>   else
+      1.9.2-p290 :005 >     puts "What a nice day"
+      1.9.2-p290 :006?>   end
+      I hate mondays
+       => nil    
+
+There is another way to evaluate the if statement, by using "unless" like: 
+
+      1.9.2-p290 :001 > today = "Monday"
+      1.9.2-p290 :002 > unless today == "Monday"
+      1.9.2-p290 :003?>   puts "what a nice day!"
+      1.9.2-p290 :004?>   end
+       => nil 
+      1.9.2-p290 :005 > today = "Tuesday"
+      1.9.2-p290 :006 > unless today == "Monday"
+      1.9.2-p290 :007?>   puts "What a nice day"
+      1.9.2-p290 :008?>   end
+      What a nice day
+       => nil     
+
+### for
+
+      for variable [, variable ...] in expression [do]
+         code
+      end
+
+### each
+
+      (0..5).each do |i|
+         puts "Value of local variable is #{i}"
+      end
+
+### while
+
+      while conditional [do]
+         code
+      end
+
+
+### Methods
 
 #### Defining a Method
 
@@ -872,7 +728,174 @@ Example:
       puts five(*h.values)
       puts five(*h.keys)
 
-### Chapter 10 'Exceptions, catch and throw'
+
+### Classeses
+
+in Ruby language a class is used to construct an object. A class is a blueprint for an object for example we might use a button class to make many 
+differents buttons, and each button might have its own color,size,etc.. properties in other words an Object is ainstance of a class
+
+let's see  an example of class definition
+
+      class Colimecolectivo
+
+        attr_accesor :writable
+        attr_reader :readable
+
+        def initialize
+          @writable = Time.now
+          @readable = Time.now
+        end
+
+        def self.test
+          t1 = Colimecolectivo.new
+          t2 = Colimecolectivo.new
+
+          puts."t1.writable"
+          puts t1.writable
+
+          sleep(2)
+
+          t1.writable = Time.now
+
+          puts "t1.writable"
+          puts t1.writable
+
+        end
+
+      end
+
+### Generation of code blocks
+
+In ruby is to easier create new functionalities for example if we needs formater a text input
+whit a especific format just needs create a method that return the text input as in the following example
+
+we create a file called blocks.rb inside the file write the following code:
+
+      def super_puts
+        puts "*****************************"
+        yield(Time.now)
+        puts "*****************************"
+      end
+
+      super_puts{|x| puts 'value'}
+      
+      super_puts do |x|
+        puts 'value'
+        puts x
+      end
+
+### Inheritance
+
+Inheritance allows you to create a class that is a refinement or specialization of another class.
+This class is called a subclass of the original, and the original is a superclass of the subclass.
+People also talk of child and parent classes.
+
+      class Parent                      # Declarating the parent class                      
+        def say_hello                   # Declaring the function
+          puts "Hello from #{self}"     # Printing the result
+        end 
+      end
+
+      p = Parent.new                    # Creating the parent class instance
+      p.say_hello                       # Executing the parent class method
+
+      # Subclass the parent...
+
+      class Child < Parent              # Declarating a child class from the superclass 'Parent' called 'Child'
+      end
+
+      c = Child.new                     # Creating the Child class instance
+      c.say_hello                       # Executing the inheritanced method
+
+        produces:
+        Hello from #<Parent:0x0000010086b220> 
+        Hello from #<Child:0x0000010086b108>
+
+A parent class assumes that it will be subclassed and calls a method that it expects its children to implement.
+This allows the parent to take on the brunt of the processing but to invoke what are effectively hook methods 
+in subclasses to add application-level functionality.
+
+### Modules
+
+Modules are a way of grouping together methods, classes, and constants. Modules give you two major benefits:
+
+1 Modules provide a namespace and prevent name clashes.
+
+2 Modules support the mixin facility.
+
+      module Trig                               # Declarating the module called 'Tring'
+      PI = 3.141592654                          # Defining 'PI' constant 
+        def Trig.sin(x)                         # Defining 'sin' function
+          # ..                        
+        end 
+
+        def Trig.cos(x)                         # Declarating 'cos' function 
+          # ..
+        end 
+      end
+
+      module Moral                              # Declarating the module called 'Tring'
+      VERY_BAD  = 0                             # Defining 'VERY_BAD' variable
+      BAD	      = 1                             # Defining 'BAD' variable
+        def Moral.sin(badness)                  # Defining 'sin' fuction
+          # ...
+        end 
+      end
+
+      require_relative 'trig'                   # Including 'trig' module
+      require_relative 'moral'                  # Including 'moral' module
+      y = Trig.sin(Trig::PI/4)                  # Executing sin function over Trig module
+      wrongdoing = Moral.sin(Moral::VERY_BAD)   # Executing sim fuction over Moral module
+
+
+
+As with class methods, you call a module method by preceding its name with the module’s name and a period,
+and you reference a constant using the module name and two colons.
+
+
+### Mixins
+Modules have another, wonderfull use. at a stroke, they pretty much eliminate the nedd for inheritance, providing a facility called a mixin
+you can include a module within a class fefinition. allowing access to all included in the module how metodos of  class itself
+
+     module Debug                                # Definition a module "Debug"
+       def who_am_i?                             # Definition a method
+         "#{self.class.name} (id: #{self.object_id}): #{self.name}"
+       end
+     end
+
+     class Phonograph                            #Another definition of a module
+       include Debug                             #including the metod Debug
+       attr_reader :name                         #definition a attribute accesor
+       def initialize(name)                      #defining class initialize method
+         @name = name
+       end
+       # ...
+     end
+
+     class EightTrack                           #another class whit the inclusion of "Debug"
+       include Debug
+       attr_reader :name
+       def initialize(name)
+         @name = name
+       end
+       # ...
+     end
+
+      ph = Phonograph.new("West End Blues")
+      et = EightTrack.new("Surrealistic Pillow")
+      
+      ph.who_am_i? # => "Phonograph (id: 2151894340): West End Blues"
+      et.who_am_i? # => "EightTrack (id: 2151894300): Surrealistic Pillow"
+
+      #As you can see each class contains the method defined in the module "Debug" this is the functionality of the modules and heritage and is known as mixin
+
+**Explanation**
+
+A module is a collection of methods that can be included in many classes and each class can access the method comprising the module.
+in other words is a way to not repeat code in one class and another through the modules you can add functionality to a class without having to be inherited from another class.
+therefore a "Mixin" the use of inheritance and modules in a class
+
+## Exceptions, catch and throw
 
 So far, we've been developing code in Pleasatnville, a wonderful place
 were nothing ever, ever goes wrong. Every library call succeeds, users
@@ -1164,7 +1187,7 @@ In ruby insted of passing a specific number of arguments in a given order we inv
 
 This will bring you a "jazz" song with a duration less then 4.5 minutes. 
 
-### Chapter 9 'Expressions'
+## Expressions
 
 One of the first differences with Ruby is that anything that can reasonably return a value does:
 
@@ -1391,7 +1414,7 @@ the local variables created in these blocks are not accessible outside the block
       [ x, y ]        # => ["initial value", 4]
 
 
-### Chapter 11 'Basic Input Output'
+## Basic Input Output
 Ruby provides what at ﬁrst sight looks like two separate sets of I/O routines. The ﬁrst is the
 simple interface—we’ve been using it pretty much exclusively so far:
 
@@ -1637,7 +1660,7 @@ produces:
      Second hyperlink is
      <a href="http://pragprog.com/community">Connect!</a>
 
-### Chapter 13 'Unit Testing'
+## Unit Testing
 
 We reviewed TDD and BDD.
 
