@@ -46,8 +46,8 @@ We need to add more info about this
 
 ### Running a rb file on ruby on bash
 
-the normal way to write ruby is to put them in one file and we can try our code on the console executing it directly load the file whit the console example to load a file an test what is the result
-whit vim create a file white the name "sample1.rb" and puts this piece of code:
+the normal way to write ruby is to put them in one file and we can try our code on the console executing it directly load the file with the console example to load a file an test what is the result
+with vim create a file withe the name "sample1.rb" and puts this piece of code:
 
 
 ##  Ruby and it's features
@@ -127,7 +127,7 @@ complex.
      1 + Rational(2,3)   #=> (5/3)
      1.0 + Rational(2,3) #=> 1.6666666666666665
 
-The rjturn-type rule still applies when it comes to division.
+The return-type rule still applies when it comes to division.
 
      1.0 / 2  # => 0.5
      1 / 2.0  # => 0.5
@@ -200,7 +200,7 @@ You have three more ways to construct string literals: %q, %Q, and here document
 
 #### Strings and Encodigs
 
-The defaul encoding for a string literal depends on the encoding of the source file that contains it. Whit no explicit encoding, a source
+The default encoding for a string literal depends on the encoding of the source file that contains it. with no explicit encoding, a source
 file (and its strings) will be US-ASCII.ASCII
 
      plain_string = "dog"
@@ -211,7 +211,7 @@ file (and its strings) will be US-ASCII.ASCII
 **Character Constants**
 
 Technically, Ruby does noy have a class for characters - characters are simply strings of lenght one. For historical reasons, character constants 
-can be created by preceding the character (or sequencee that represents a character) whit a question mark:
+can be created by preceding the character (or sequence that represents a character) with a question mark:
 
 
 sequence that represents a character) with a question mark:
@@ -223,9 +223,9 @@ sequence that represents a character) with a question mark:
      ?\M-\C-a # => "\x81"   (meta and control a)          
      ?\C-?    # => "\x7F"   (delete character)           
 
-**Working whit Strings**
+**Working with Strings**
 
-Strings is probably the largest built-in Ruby class, whit more than 100 standard methods. We won't go through them all here; the library reference has
+Strings is probably the largest built-in Ruby class, with more than 100 standard methods. We won't go through them all here; the library reference has
 a complete list. Insted, We'll look at some common strings idioms -- things that are likely to pop up during day to day proraming.
 
 maybe we've been given a file containing information on a song playlist. For historical reasons, the list of songs is stored as lines in the file.
@@ -273,14 +273,14 @@ for test the code just run :
       =>g
       =>g f e d c b a 
 
-the code array.collect throught each position or element in array variable and puts the value on console
+the code array.collect through each position or element in array variable and puts the value on console
 the method reverse sort the content of array in order ascendent or descendent. using the last method joins all 
 values content in each position in array separate by colons. returns only one string.
 
       =>a b c d e f g
 
-the first one each element must be separated whit a semicolon and if you write a string should be enclosed
-another one  only can contain single phrases or single words if contains words whit blank space you must be defined it whit the first form
+the first one each element must be separated with a semicolon and if you write a string should be enclosed
+another one  only can contain single phrases or single words if contains words with blank space you must be defined it with the first form
 
       class Array
         def sum
@@ -300,14 +300,22 @@ and this is a little example. to use the method only needs type the next: the ru
 Hashes are also indexed collections but is very different from arrays(some times know as assiciative arrays,maps or ditcionaries)
 this variables accept or support any object as key. the hashes provide more flexibility than a arrays.
 Hoever, althought you index arrays with integers,you can index array with objects of any type: simbols,strings,regular expressions,and so on.
-the syntax of a hash is name_variable={'index'=>'value','index2'=>'value2'}. to retrieve a value from hash called h we can do this:
+the syntax of a hash is: 
 
-      h['index'] # => "value"
-      h['index2'] # =>"value2"
+      my_hash = {
+        'index'=>'value',
+        'index2'=>'value2'
+      }
 
-to know how many elements contains  hash h run the command:
+To retrieve a value from hash called h we can do this:
 
-      h.length #=>2
+
+      my_hash['index'] # => "value"
+      my_hash['index2] # => "value2"
+
+To know how many elements contains  hash h run the command:
+
+      my_hash.length #=>2
 
 - Symbols
 
@@ -316,23 +324,26 @@ and by the various to_sym methods. The same Symbol object will be created for a 
 regardless of the context or meaning of that name. Thus if Fred is a constant in one context, a method in another, and a class in a third,
 the Symbol :Fred will be the same object in all three contexts.
 
-      module One
-        class Fred
+      class MyClass
+        def initialize
+          @my_hash = {
+            :one => "First element",
+            :two => "Second element",
+            :three => "Third element"
+          }
         end
-        $f1 = :Fred
+        def get_hash_element(key)
+          @my_hash[key]
+        end
       end
-      module Two
-        Fred = 1
-        $f2 = :Fred
-      end
-      def Fred()
-      end
-      $f3 = :Fred
-      $f1.object_id   #=> 2514190
-      $f2.object_id   #=> 2514190
-      $f3.object_id   #=> 2514190
+      
+      keyfinder= MyClass.new
+      
+      puts keyfinder.get_hash_element(:uno)
+      puts keyfinder.get_hash_element(:two)
+      puts keyfinder.get_hash_element(:three)
 
-- Constans
+- Constants
 
 A Ruby constant is like a variable, except that its value is supposed to remain constant for the duration of the program.
 Lexically, the names of constants look like the names of local variables, except that they begin with a capital letter.
@@ -508,8 +519,8 @@ The sequence (?# comment) inserts a comment into the pattern. The content is ign
 
 For example, you might want to match every word in a string that is followed by a comma, but you don’t want the comma to form part of the match. Here you could use the charmingly named zero-width positive lookahead extension. (?=re) matches re at this point but does not consume it—you can look forward for the context of a match without affecting $&. In this example, we’ll use scan to pick out the words:
 
-      str = "red, white, and blue"
-      str.scan(/[a-z]+(?=,)/) # => ["red", "white"]
+      str = "red, withe, and blue"
+      str.scan(/[a-z]+(?=,)/) # => ["red", "withe"]
 
 
 **Controlling Backtracking**
@@ -540,7 +551,8 @@ Normally, the definition of the group is itself matched as part of executing the
 if you add the suffix {0} to the group, it means “zero matches of this group,” 
 so the group is not executed when first encountered
 
-## Structures of controll
+
+## Control Structures
 
 ### If, else
 
@@ -621,13 +633,13 @@ With that expresion you can asign to 'rest' more then one value
 #### Calling method blocks
 
       class TaxCalculator 
-          def initialize(name, &block)                            # '&' determinates any associated block is converted to a Proc object
-            @name, @block = name, block                           
-          end
-
-          def get_tax(amount)                                     
-            "#@name on #{amount} = #{ @block.call(amount) }"      # 'call' is used to execute the block code
-          end 
+        def initialize(name, &block)                            # '&' determinates any associated block is converted to a Proc object
+          @name, @block = name, block                           
+        end
+        
+        def get_tax(amount)
+          "#@name on #{amount} = #{ @block.call(amount) }"      # 'call' is used to execute the block code
+        end 
       end
 
       tc = TaxCalculator.new("Sales tax") {|amt| amt * 0.075 }    
@@ -663,7 +675,7 @@ For class and module methods, the receiver will be the class or module name.
         end
 
         def write_body_on(output) 
-         puts "body"
+          puts "body"
         end
 
         def write_totals_on(output) 
@@ -681,12 +693,24 @@ If no ambiguity exists, you can omit the parentheses around the argument list wh
 2 However, except in the simplest cases we don’t recommend this—some subtle problems can trip you up.
 3 Our rule is simple: if you have any doubt, use parentheses.
 
-      # for some suitable value in obj:
-      a = obj.hash	# Same as 
-      a = obj.hash() # this.
+      class MethodClass
+        def initialize first_argument, second_argument
+          @first_variable = first_argument
+          @second_variable = second_argument
+        end
 
-      obj.some_method "Arg1", arg2, arg3	# Same thing as 
-      obj.some_method("Arg1", arg2, arg3) # with parentheses.
+        def print_first_variable
+          print @first_variable
+        end
+
+        def print_second_variable
+          print @second_variable
+        end
+      end
+
+      method_object = MethodClass.new "Hola", " mundo!"
+      method_object.print_first_variable
+      method_object.print_second_variable
 
 #### Method Return Values
 
@@ -694,13 +718,14 @@ This next example uses return to exit from a loop inside the method:
 
       def meth_three 
         100.times do |num|
-        square = num*num
-        return num, square if square > 1000 end
+          square = num*num
+          return num, square if square > 1000 
+        end
       end
 
 
 
-#### Splat! Expanding     Collections in Method Calls
+#### Splat! Expanding Collections in Method Calls
 
 In a single argument a method could get 'n' parameters, to do so we need to write a '*' before an argument.
 Note: the total of armguments inside an array or hash plus the single arguments must be equal to the expected arguments.
@@ -715,9 +740,9 @@ Example:
       puts five(*['a', 'b'],*(1..3))
       puts five(*(10..14)) 
       puts five(*[1,2], 3, *(4..5))
-      a=(1..5)
+      a = (1..5)
       puts five(*a)
-      h= {
+      h = {
         '1' => 'uno', 
         '2' => 'dos',
         '3' => 'tres', 
@@ -729,7 +754,7 @@ Example:
       puts five(*h.keys)
 
 
-### Classeses
+### Classes
 
 in Ruby language a class is used to construct an object. A class is a blueprint for an object for example we might use a button class to make many 
 differents buttons, and each button might have its own color,size,etc.. properties in other words an Object is ainstance of a class
@@ -767,7 +792,7 @@ let's see  an example of class definition
 ### Generation of code blocks
 
 In ruby is to easier create new functionalities for example if we needs formater a text input
-whit a especific format just needs create a method that return the text input as in the following example
+with a especific format just needs create a method that return the text input as in the following example
 
 we create a file called blocks.rb inside the file write the following code:
 
@@ -866,15 +891,17 @@ you can include a module within a class fefinition. allowing access to all inclu
      class Phonograph                            #Another definition of a module
        include Debug                             #including the metod Debug
        attr_reader :name                         #definition a attribute accesor
+
        def initialize(name)                      #defining class initialize method
          @name = name
        end
        # ...
      end
 
-     class EightTrack                           #another class whit the inclusion of "Debug"
+     class EightTrack                           #another class with the inclusion of "Debug"
        include Debug
        attr_reader :name
+
        def initialize(name)
          @name = name
        end
@@ -920,95 +947,93 @@ and stack backtrace. If you define your own exceptions, you can add extra inform
         fatal
         NoMemoryError
         ScriptError
-         LoadError
-         NotImplementedError
-         SyntaxError
+          LoadError
+          NotImplementedError
+          SyntaxError
         SecurityError
         SignalException
-         Interrupt
+          Interrupt
         StandardError
           ArgumentError
           EncodingError
-           Encoding::CompatibilityError
-           Encoding::ConverterNotFoundError
-           Encoding::InvalidByteSequenceError
-           Encoding::UndefinedConversionError
+            Encoding::CompatibilityError
+            Encoding::ConverterNotFoundError
+            Encoding::InvalidByteSequenceError
+            Encoding::UndefinedConversionError
           FiberError
           IndexError
-           KeyError
+            KeyError
             StopIteration
           IOError
-           EOFError
+            EOFError
          LocalJumpError
-          Math::DomainError
-          NameError
-            NoMethodError
-          RangeError
-            FloatDomainError
-          RegexpError
+           Math::DomainError
+           NameError
+             NoMethodError
+           RangeError
+             FloatDomainError
+           RegexpError
          RuntimeError
          SystemCallError
          ThreadError
          TypeError
          ZeroDivisionError
-        SystemExit
-       SystemStackError
+      SystemExit
+      SystemStackError
 
 #### Handling Exceptions
 
-Here's some simple code that uses the open-uri
-library to download the contents of a web page
-and write it to a file by line:
+Here's some simple code that uses the open-uri library to download the contents of a web page and write it to a file by line:
 
       require 'open-uri'
+
       web_page = open("http://pragprog.com/podcasts")
       output = File.open("podcasts.html","w")
+
       while line = web_page.gets
-       output.puts line
+        output.puts line
       end
+
       output.close
 
-We certanly don't want to store an incomplete page
-to the output file. Let's add some Exception handling
-code and see how it helps.
+We certanly don't want to store an incomplete page to the output file. Let's add some Exception handling code and see how it helps.
 
       require 'open-uri'
       page = "podcasts"
       file_name = "#{page}.html"
       web_page = open("http://pragprog.com/#{page}")
       output = File.open(file_name,"w")
+
       begin
         while line = web_page.gets
           output.puts line
         end
-       output.close
+      output.close
+
       rescue Exception
-       STDERR.puts "Failed to download #{page}: #{$!}"
-       output.close
-       FIle.delete(file_name)
-       raise
+        STDERR.puts "Failed to download #{page}: #{$!}"
+        output.close
+        FIle.delete(file_name)
+        raise
       end
 
-You can have multiple rescue clauses in a begin block
-and each rescue clause can specify multiple exceptions to catch.
+You can have multiple rescue clauses in a begin block and each rescue clause can specify multiple exceptions to catch.
 
-At the end of each rescue clause, you can give Ruby the name of a
-local variable to recieve the matched Exception. Most people find
-this more readable than using $! all over the place.
+At the end of each rescue clause, you can give Ruby the name of a local variable to recieve the matched Exception. Most people find this more readable than using $! all over the place.
 
       begin
-       eval string
+        eval string
+
       rescue SyntaxError, NameError => boom
-       print "String doesn't compile: " + boom
+        print "String doesn't compile: " + boom
+
       rescue StandardError => bang
-       print "Error running script: " +bang
+        print "Error running script: " +bang
       end
 
 #### System Errors
 
-System errors are raised when a call to the opening system returns an
-error code. Ruby takes these errors and wraps them in each specific 
-exception object.
+System errors are raised when a call to the opening system returns an error code. Ruby takes these errors and wraps them in each specific exception object.
 
       Errno::EAGAIN::Errno      # => 35
       Errno::EPERN::Errno       # => 1
@@ -1017,8 +1042,7 @@ exception object.
 
 #### Tidying Up
 
-Sometimes you need to guarantee that some processing is done at the end 
-of code, regardless of whether an exception was raised.
+Sometimes you need to guarantee that some processing is done at the end of code, regardless of whether an exception was raised.
 
       f = File.open("testfile")
       begin
@@ -1044,8 +1068,7 @@ You can add an "else" clause.
 
 #### Raising Exceptions
 
-You can raise exceptions in your code with the 
-Object#raise method.
+You can raise exceptions in your code with the Object#raise method.
 
       raise
       raise "bad mp3 endcoding"
@@ -1063,8 +1086,7 @@ Here are some typical examples of raise in action
 
 #### Adding information to exceptions
 
-You can define your own exceptions to hold any information
-that you need to pass out from the site of an error.
+You can define your own exceptions to hold any information that you need to pass out from the site of an error.
 
       class RetryException < RuntimeError
         attr :ok_to_retry
@@ -1095,9 +1117,7 @@ Higher up the call stack, we handle the exception:
 
 #### Catch and Throw
 
-Although the exception mechanism of raise and rescue is great for abandoning
-excecution when things go wrong, it's sometimes nice to be able to jump out
-of some deeply nested construct during normal processing.
+Although the exception mechanism of raise and rescue is great for abandoning excecution when things go wrong, it's sometimes nice to be able to jump out of some deeply nested construct during normal processing.
 
       word_list = File.open("wordlist")
       catch (:done) do
@@ -1110,20 +1130,22 @@ of some deeply nested construct during normal processing.
         puts result.reverse
       end
 
-Catch defines a block is labeled with the given name (which any symbol or string).
-When ruby encounters a throw, it zips it back up the call stack looking for a catch
-block with a matching symbol.
+Catch defines a block is labeled with the given name (which any symbol or string). When ruby encounters a throw, it zips it back up the call stack looking for a catch block with a matching symbol.
 
       word_list = File.open("wordlist")
       word_in_error = catch(:done) do
+
         result = []
+
         while line = word_list.gets
           word = line.chomp
           throw(:done,word) unless word =~ /^\w+$/
           result << word
         end
         puts result.reverse
+
       end
+
       if word_in_error
         puts "Failed: '#{word_in_error}' found, but a word was expected"
       end
@@ -1132,8 +1154,7 @@ Produces:
 
       Failed: '(word in error)' found, but word was expected
 
-The following example uses a throw to terminate interaction with the user if '!' is typed
-in response to any prompt
+The following example uses a throw to terminate interaction with the user if '!' is typed in response to any prompt
 
       def prompt_and_get(prompt)
         print prompt
@@ -1153,8 +1174,7 @@ As this example ilustrates, the throw does not have to appear within the static 
 
 #### Making Blocks More Dynamic
 
-Normally, this is perfectly good enough—you associate a fixed block of code with a method in the same way you’d have a chunk of code after an
-if or while statement.
+Normally, this is perfectly good enough—you associate a fixed block of code with a method in the same way you’d have a chunk of code after an if or while statement.
 
       print "(t)imes or (p)lus: "
       operator = gets
@@ -1200,8 +1220,7 @@ Some obvious things include the ability to chain statements together:
 
 #### Operator Expressions
 
-In Ruby, many operators are implemented as method calls. For example, when you write 'a*b+c', 
-you’re actually asking the object referenced by a to execute the method '*', passing in the parameter b.
+In Ruby, many operators are implemented as method calls. For example, when you write 'a*b+c', you’re actually asking the object referenced by a to execute the method '*', passing in the parameter b.
 
       a, b, c = 1, 2, 3 
       a * b + c             # => 5 
@@ -1292,8 +1311,7 @@ It extracts the corresponding rvalue, assigning it to the parenthesized terms, b
 
 #### Conditional Execution
 
-Ruby has several different mechanisms for conditional execution of code; most of them should feel familiar,
-and many have some neat twists. Before we get into them, though, we need to spend a short time looking at boolean expressions.
+Ruby has several different mechanisms for conditional execution of code; most of them should feel familiar, and many have some neat twists. Before we get into them, though, we need to spend a short time looking at boolean expressions.
 
 Both the keyword and and the operator && return their first argument if it is false
 
@@ -1301,8 +1319,7 @@ Both the keyword and and the operator && return their first argument if it is fa
       false && 99       # => false 
       "cat" && 99       # => 99
 
-Similarly, both or and || return their first argument unless it is false, in which case they evaluate
-and return their second argument.
+Similarly, both or and || return their first argument unless it is false, in which case they evaluate and return their second argument.
 
       nil ||99      #=>99 
       false || 99   # => 99 
@@ -1389,11 +1406,9 @@ The loop control constructs break, redo, and next let you alter the normal flow 
 
 #### Variable Scope, Loops, and Blocks 
 
-The while, until, and for loops are built into the language and do not introduce new scope;
-previously existing locals can be used in the loop, and any new locals created will be available afterward
+The while, until, and for loops are built into the language and do not introduce new scope; previously existing locals can be used in the loop, and any new locals created will be available afterward.
 
-The scoping rules for blocks (such as those used by loop and each) are different. Normally,
-the local variables created in these blocks are not accessible outside the block:
+The scoping rules for blocks (such as those used by loop and each) are different. Normally, the local variables created in these blocks are not accessible outside the block:
 
       [ 1, 2, 3 ].each do |x| 
         y=x+1
@@ -1415,25 +1430,18 @@ the local variables created in these blocks are not accessible outside the block
 
 
 ## Basic Input Output
-Ruby provides what at ﬁrst sight looks like two separate sets of I/O routines. The ﬁrst is the
-simple interface—we’ve been using it pretty much exclusively so far:
+Ruby provides what at ﬁrst sight looks like two separate sets of I/O routines. The ﬁrst is the simple interface we've been using it pretty much exclusively so far:
 
      print "Enter your name: "
      name = gets
 
-A whole set of I/O-related methods is implemented in the Kernel module—gets, open, print,
-printf, putc, puts, readline, readlines, and test—that makes it simple and convenient to write
-straightforward Ruby programs.
+A whole set of I/O-related methods is implemented in the Kernel module gets, open, print, printf, putc, puts, readline, readlines, and test that makes it simple and convenient to write straig tforward Ruby programs.
 
 The second way, which gives you a lot more control, is to use IO objects.
 
 #### What Is an IO Object?
 
-Ruby deﬁnes a single base class, IO, to handle input and output. This base class is subclassed
-by classes File and BasicSocket to provide more specialized behavior, but the principles are
-the same. An IO object is a bidirectional channel between a Ruby program and some external
-resource.1 An IO object may have more to it than meets the eye, but in the end you still simply
-write to it and read from it.
+Ruby deﬁnes a single base class, IO, to handle input and output. This base class is subclassed by classes File and BasicSocket to provide more specialized behavior, but the principles are the same. An IO object is a bidirectional channel between a Ruby program and some external resource.1 An IO object may have more to it than meets the eye, but in the end you still simply write to it and read from it.
 
 #### Opening and Closing Files
 
@@ -1445,53 +1453,46 @@ As you may expect,  you can create a new file object  using File.new
        # ... process the file
      file.close
 
-The ﬁrst parameter is the ﬁlename. The second is the mode string, which lets you open the ﬁle
-for reading, writing, or both. (Here we opened testﬁle for reading with an "r". We could also have
-used "w" for write or "r+" for read-write. 
+The ﬁrst parameter is the ﬁlename. The second is the mode string, which lets you open the ﬁle for reading, writing, or both. (Here we opened testﬁle for reading with an "r". We could also have used "w" for write or "r+" for read-write. 
 
 But here Ruby can make life a little bit easier for you. The method 
 
       File.open 
 
-also opens a ﬁle. In regular use, it behaves just like File.new. However, if you associate a block with the call,
-open behaves differently. Instead of returning a new File object, it invokes the block, passing the
-newly opened File as a parameter. When the block exits, the ﬁle is automatically closed.
+Also opens a ﬁle. In regular use, it behaves just like File.new. However, if you associate a block with the call, open behaves differently. Instead of returning a new File object, it invokes the block, passing the newly opened File as a parameter. When the block exits, the ﬁle is automatically closed.
 
       File.open("testfile", "r") do |file|
             # ... process the file
       end   # <- file automatically closed here
 
-The difference between methods  In the earlier case, if an exception is raised while
-processing the ﬁle, the call to ﬁle.close may not happen.
-
-but this may not happen for a while. Meanwhile, resources are being held open.
+The difference between methods  In the earlier case, if an exception is raised while processing the ﬁle, the call to ﬁle.close may not happen. But this may not happen for a while. Meanwhile, resources are being held open.
 
 If an exception is raised inside the block, the ﬁle is closed before the exception is propagated on to the caller. 
 It’s as if the open method looks like the following:
 
      class File
-      def File.open(*args)
-       result = f = File.new(*args)
-        if block_given?
-         begin
-           result = yield f
-           ensure
-           f.close
-         end
-        end
-       result
-      end
+       def File.open(*args)
+         result = f = File.new(*args)
+           if block_given?
+             begin
+               result = yield f
+             ensure
+               f.close
+             end
+           end
+         result
+       end
      end
+
 
 #### Reading and Writing Files
 
-The same methods that we’ve been using for “simple” I/O are available for all ﬁle objects. So,
-gets reads a line from standard input, and ﬁle.gets reads a line from the ﬁle object ﬁle.
+The same methods that we’ve been using for “simple” I/O are available for all ﬁle objects. So, gets reads a line from standard input, and ﬁle.gets reads a line from the ﬁle object ﬁle.
 
 For example, we could create a program called copy.rb:
 
      while line = gets
-      puts line
+       puts line
      end
 
 running the example:
@@ -1503,8 +1504,7 @@ running the example:
       that I am typing
       ^D
 
-We can also pass in one or more ﬁlenames on the command line, in which case gets will read
-from each in turn:
+We can also pass in one or more ﬁlenames on the command line, in which case gets will read from each in turn:
 
       $ ruby copy.rb testfile
       This is line one
@@ -1515,9 +1515,9 @@ from each in turn:
 we can explicitly open the ﬁle and read from it:
 
      File.open("testfile") do |file|
-      while line = file.gets
-       puts line
-      end
+       while line = file.gets
+         puts line
+       end
      end
 
 produces:
@@ -1529,9 +1529,7 @@ produces:
 
 ##### Iterators for Reading
 
-As well as using the usual loops to read data from an IO stream, you can also use various Ruby
-iterators. IO#each_byte invokes a block with the next 8-bit byte from the IO object (in this case, 
-an object of type File). The chr method converts an integer to the corresponding ASCII character:
+As well as using the usual loops to read data from an IO stream, you can also use various Ruby iterators. IO#each_byte invokes a block with the next 8-bit byte from the IO object (in this case, an object of type File). The chr method converts an integer to the corresponding ASCII character:
 
      File.open("testfile") do |file|
        file.each_byte.with_index do |ch, index|
@@ -1540,7 +1538,7 @@ an object of type File). The chr method converts an integer to the corresponding
        end
      end
 
-oproduces:
+Produces:
 
      T:84 h:104 i:105 s:115
      :32 i:105 s:115
@@ -1549,38 +1547,34 @@ oproduces:
 
 ##### Writing to Files
 
-With a couple of exceptions, every object you pass to puts and print is converted to a string by calling that
-object’s to_s method. If for some reason the to_s method doesn’t return a valid string, a string is created
-containing the object’s class name and ID, something like #<ClassName:0x123456>:
+With a couple of exceptions, every object you pass to puts and print is converted to a string by calling that object’s to_s method. If for some reason the to_s method doesn’t return a valid string, a string is created containing the object’s class name and ID, something like #<ClassName:0x123456>:
 
      # Note the "w", which opens the file for writing
      File.open("output.txt", "w") do |file|
-      file.puts "Hello"
-      file.puts "1 + 2 = #{1+2}"
+       file.puts "Hello"
+       file.puts "1 + 2 = #{1+2}"
      end
      # Now read the file in and print its contents to STDOUT
      puts File.read("output.txt")
-     produces:
+
+produces:
+
      Hello
      1 + 2 = 3
 
-The exceptions are simple, too. The nil object will print as the empty string, and an array passed
-to puts will be written as if each of its elements in turn were passed separately to puts.
+The exceptions are simple, too. The nil object will print as the empty string, and an array passed to puts will be written as if each of its elements in turn were passed separately to puts.
 
-#### Talkin to Networks
+#### Talking to Networks
 
 Ruby is ﬂuent in most of the Internet’s protocols, both low-level and high-level.
-Ruby comes with a set of classes in the socket
-These give you access to TCP, UDP, SOCKS, and Unix domain sockets, as well as any additional socket types
-supported on your architecture. The library also provides helper classes to make writing servers easier. 
-Here’s a simple program that gets infor-mation about our user website on a local web server using 
-the HTTP OPTIONS request:
+
+Ruby comes with a set of classes in the socket These give you access to TCP, UDP, SOCKS, and Unix domain sockets, as well as any additional socket types supported on your architecture. The library also provides helper classes to make writing servers easier. Here’s a simple program that gets infor-mation about our user website on a local web server using the HTTP OPTIONS request:
 
      require 'socket'
-      client = TCPSocket.open('127.0.0.1', 'www')
-       client.send("OPTIONS /~dave/ HTTP/1.0\n\n", 0)
-       puts client.readlines
-      client.close
+     client = TCPSocket.open('127.0.0.1', 'www')
+     client.send("OPTIONS /~dave/ HTTP/1.0\n\n", 0)
+     puts client.readlines
+     client.close
 
      # 0 means standard packproduces:
 
@@ -1598,8 +1592,9 @@ The lib/net set of library modules provides hanlevel protocols (currently FTP, H
      require 'net/http'
 
      http = Net::HTTP.new('pragprog.com', 80)
-      response = http.get('/titles/ruby3/programming-ruby-3')
-       if response.message == "OK"
+     response = http.get('/titles/ruby3/programming-ruby-3')
+
+     if response.message == "OK"
        puts response.body.scan(/<img alt=".*?" src="(.*?)"/m).uniq[0,4]
      end
 
@@ -1615,8 +1610,8 @@ produces:
 #####  Parsing HTML
 
      require 'open-uri'
-      page = open('http://pragprog.com/titles/ruby3/programming-ruby-1-9').read
-       if page =~ %r{<title>(.*?)</title>}m
+     page = open('http://pragprog.com/titles/ruby3/programming-ruby-1-9').read
+     if page =~ %r{<title>(.*?)</title>}m
        puts "Title is #{$1.inspect}"
      end
 
@@ -1625,8 +1620,7 @@ produces:
      Title is "The Pragmatic Bookshelf | Programming Ruby 1.9"
      Having read HTML from a website, you might want to parse information out of it.
 
-But regular expressions won’t always work. For example, if someone had an extra space in the
-<title> tag, the match would have failed. For real-world use, you probably want to use a library
+But regular expressions won’t always work. For example, if someone had an extra space in the <title> tag, the match would have failed. For real-world use, you probably want to use a library.
 
 To use this in a real world you probably want to use  a library to parser html
 
@@ -1686,9 +1680,7 @@ We discussed about Behaviour Driven Development where we write our expectations 
 
 **Test_unit**
 
-Unit testing is testing that focuses on small chunks (units) of code, typically individual methods
-or lines within methods. This is in contrast to most other forms of testing, which consider the
-system as a whole
+Unit testing is testing that focuses on small chunks (units) of code, typically individual methods or lines within methods. This is in contrast to most other forms of testing, which consider the system as a whole
 
 * advantadges
 
@@ -1697,8 +1689,7 @@ system as a whole
 ** it helps others understand how to use your code
 ** The flexibility of Ruby makes writing tests easy
 
-Let’s say we’re testing a Roman number class. So far, the code is pretty simple: it just lets us
-create an object representing a certain number and display that object in Roman numerals:
+Let’s say we’re testing a Roman number class. So far, the code is pretty simple: it just lets us create an object representing a certain number and display that object in Roman numerals:
 
       # This code has bugs
       class Roman
@@ -1733,11 +1724,11 @@ We could test this code by writing another program, like this:
       require 'test/unit'
       class TestRoman < Test::Unit::TestCase
         def test_simple
-            assert_equal("i",   Roman.new(1).to_s)
-            assert_equal("ii",  Roman.new(2).to_s)
-            assert_equal("iii", Roman.new(3).to_s)
-            assert_equal("iv",  Roman.new(4).to_s)
-            assert_equal("ix",  Roman.new(9).to_s)
+          assert_equal("i",   Roman.new(1).to_s)
+          assert_equal("ii",  Roman.new(2).to_s)
+          assert_equal("iii", Roman.new(3).to_s)
+          assert_equal("iv",  Roman.new(4).to_s)
+          assert_equal("ix",  Roman.new(9).to_s)
         end
       end
 
@@ -1755,10 +1746,7 @@ produces:
         test_simple(TestRoman) [/tmp/prog.rb:6]:
 
 
-The second assertion failed.See how the error message uses the fact that the assert
-knows both the expected and actual values: it expected to get “ii” but instead got “i.” Looking
-at our code, you can see a clear bug in to_s. If the count after dividing by the factor is greater
-than zero, then we should output that many Roman digits. The existing code outputs just one.
+The second assertion failed.See how the error message uses the fact that the assert knows both the expected and actual values: it expected to get “ii” but instead got “i.” Looking at our code, you can see a clear bug in to_s. If the count after dividing by the factor is greater than zero, then we should output that many Roman digits. The existing code outputs just one.
 The fix is easy:
 
       def to_s
@@ -1773,23 +1761,14 @@ The fix is easy:
 
 Now let’s run our tests again and already!
 
-
-
 **RSpec**
 
-RSpec is very much concerned with driving the design side of things. You can write and execute
-specs with RSpec well before you’ve written a line of application code. These specs, when run,
-will output the user stories that describe your application. Then, as you fill in the code, the specs
-mutate into tests that validate that your code meets your expectations.
+RSpec is very much concerned with driving the design side of things. You can write and execute specs with RSpec well before you’ve written a line of application code. These specs, when run, will output the user stories that describe your application. Then, as you fill in the code, the specs mutate into tests that validate that your code meets your expectations.
 
-The scoring system used in lawn tennis originated in the Middle Ages. As players win successive
-points, their scores are shown as 15, 30, and 40. The next point is a win unless your opponent
-also has 40. If you’re both tied at 40, then different rules apply—the first player with a clear
-two-point advantage is the winner.
+The scoring system used in lawn tennis originated in the Middle Ages. As players win successive points, their scores are shown as 15, 30, and 40. The next point is a win unless your opponent also has 40. If you’re both tied at 40, then different rules apply—the first player with a clear two-point advantage is the winner.
 
 
-We have to write a class that handles this scoring system. Let’s use RSpec specifications to drive
-the process. We install RSpec with gem install rspec. We’ll then create our first specification file:
+We have to write a class that handles this scoring system. Let’s use RSpec specifications to drive the process. We install RSpec with gem install rspec. We’ll then create our first specification file:
 
       describe "TennisScorer", "basic scoring" do
         it "should start with a score of 0-0"
@@ -1799,13 +1778,9 @@ the process. We install RSpec with gem install rspec. We’ll then create our fi
         # ...
       end
 
-Note: This file contains nothing more than a description of an aspect of the tennis scoring class (that
-we haven’t yet written, by the way). It contains a description of the basic scoring system and we’ve assumed we have a class
-TennisScorer in a file called tennis_scorer.rb
+Note: This file contains nothing more than a description of an aspect of the tennis scoring class (that we haven’t yet written, by the way). It contains a description of the basic scoring system and we’ve assumed we have a class TennisScorer in a file called tennis_scorer.rb
 
-RSpec gives us an alternative way of setting up conditions for our tests. The let method
-creates what looks like a variable (it’s actually a dynamically defined method) whose value is
-given by evaluating a block. This lets us write the following:
+RSpec gives us an alternative way of setting up conditions for our tests. The let method creates what looks like a variable (it’s actually a dynamically defined method) whose value is given by evaluating a block. This lets us write the following:
 
       require_relative "tennis_scorer"
       describe TennisScorer, "basic scoring" do
@@ -1828,8 +1803,7 @@ given by evaluating a block. This lets us write the following:
           end
       end
 
-We’re going to stop here, but I suggest that you might want to take this code and continue to
-develop it. Write expectations such as these:
+We’re going to stop here, but I suggest that you might want to take this code and continue to develop it. Write expectations such as these:
 
       it "should be 40-0 after the server wins three points"
       it "should be W-L after the server wins four points"
@@ -1842,10 +1816,7 @@ and so on. Note that none of these expectations is met by our current implementa
 
 **Shoulda**
 
-RSpec is testing with attitude. On the other hand, Shoulda takes many of the ideas from RSpec
-and humbly offers them to you for integration into your regular unit tests. For many developers,
-particularly those with existing Test::Unit tests, this is a good compromise. You get much of the
-descriptive power of RSpec-style expectations without having to commit to the full framework.
+RSpec is testing with attitude. On the other hand, Shoulda takes many of the ideas from RSpec and humbly offers them to you for integration into your regular unit tests. For many developers, particularly those with existing Test::Unit tests, this is a good compromise. You get much of the descriptive power of RSpec-style expectations without having to commit to the full framework.
 
         Install Shoulda using gem install shoulda.
 
@@ -1905,13 +1876,7 @@ Let’s run it:
       Finished in 0.000803 seconds.
       4 tests, 4 assertions, 0 failures, 0 errors, 0 skips
 
-Would we use these nested contexts for this tennis scoring example? We probably wouldn’t as it
-stands, because the linear form is easier to read. But we use them all the time when we have tests
-where we want to run through a complex scenario that builds from test to test. This nesting lets
-us set up an environment, run some tests, then change the environment, run more tests, change
-it again, run even more tests, and so on. It ends up making tests far more compact and removes
-a lot of duplication
+Would we use these nested contexts for this tennis scoring example? We probably wouldn’t as it stands, because the linear form is easier to read. But we use them all the time when we have tests where we want to run through a complex scenario that builds from test to test. This nesting lets us set up an environment, run some tests, then change the environment, run more tests, change it again, run even more tests, and so on. It ends up making tests far more compact and removes a lot of duplication.
 
 
 This is a summary from [Programming Ruby](http://pragprog.com/book/ruby/programming-ruby) book
-
