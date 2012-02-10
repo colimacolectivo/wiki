@@ -14,7 +14,7 @@ You need to ensure that you have the following packages installed on your Operat
 
 Next to this install the latest version of RVM from github with this command:
 
-    $ bash < <(curl -s https://rvm.beginrescueend.com/install/rvm)
+    $ bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
 
 And add the following line to your `.bashrc` file on your user home directory by using your favourite text editor, personally i like vim.
 
