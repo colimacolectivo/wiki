@@ -114,3 +114,60 @@ And we'll get a output like this one:
 Open your browser to see the splash page `http://localhost:3000/` 
 
 ![]()
+
+You'll be able to remove this annoying first page by deleting it from the `/public` directory inside your rails app:
+
+    $ rm -rf public/index.html
+
+Restart the server, and now you see this one...
+
+![]()
+
+By default Rails takes the `public/` directory first, that's why you were able to see that index and now you have an exception. Let's fix that, we need to generate a new controller in order to have the general website actions defined somewhere. Type in your terminal:
+
+    $ rails generate controller home
+
+Now we have an empty controller inside `app/controllers/home_controller.rb`
+
+    class HomeController < ApplicationController
+    end
+
+On rails, the controllers invoke actions, defined as class functions inside the same controller, but it's common to see actions of controllers invoking views with the same name, let's make this explanation more easly by working on it... 
+
+Let's add this action inside of our HomeController:
+
+    class HomeController < ApplicationController
+
+      # This is our action
+      def index
+      end
+
+    end
+
+This will be our website index page, but it's not ready to act like the index, we need to add the view inside the the `app/views/home/index.html.haml`.
+
+    $ touch app/views/home/index.html.haml
+
+The interesting thing here, is that we're using `haml` as our markup language, but we're not specifying to rails how to use it, so let's go to our Gemfile and add this line.
+
+    gem 'haml'
+
+And run bundle install:
+
+    $ bundle install
+
+And now we can add some index to our app:
+
+    # app/views/home/index.html.haml
+     %h1 Index of our first application
+
+We have the index now, but, if we check again, we're not ready yet... We need to tell ruby where is the index of our application, and that happens on the `config/routes.rb` file, let's add the necessary lines:
+
+    root :to => "home#index"
+
+And now restart the server `ctrl + c`:
+
+    $ rails server
+
+Let's watch the magic!!! `http://localhost:3000/`
+
