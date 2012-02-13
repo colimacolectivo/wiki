@@ -171,3 +171,76 @@ And now restart the server `ctrl + c`:
 
 Let's watch the magic!!! `http://localhost:3000/`
 
+Now, we have this index, and now we understand the controller-view workflow a little, so, let's start understanding the Model-side of rails. Let's imagine we need users to this system, with the following attributes `first_name:string`, `last_name:string`, `age:integer`, `status:string` and `bio:text`, so we need to create the model User
+
+    $ rails generate model user
+
+And we have a new migration inside the `db/migrate/` directory, Rails interact with the database objects through the models, so, in that sense if you want to do validations, and more database stuff, you need to place it in the model, in this case our model is this one `app/models/user.rb`, but our database is not ready yet, first, we need to check our config file for database managment, this file is inside the `config/` folder. Let's check it out...
+
+    $ cd conifg/database.yml
+
+    # SQLite version 3.x
+    #   gem install sqlite3
+    #
+    #   Ensure the SQLite 3 gem is defined in your Gemfile
+    #   gem 'sqlite3'
+    development:
+      adapter: sqlite3
+      database: db/development.sqlite3
+      pool: 5
+      timeout: 5000
+
+    # Warning: The database defined as "test" will be erased and
+    # re-generated from your development database when you run "rake".
+    # Do not set this db to the same as development or production.
+    test:
+      adapter: sqlite3
+      database: db/test.sqlite3
+      pool: 5
+      timeout: 5000
+
+    production:
+      adapter: sqlite3
+      database: db/production.sqlite3
+      pool: 5
+      timeout: 5000
+
+This file has the necessary configuration of the database, as you can see there are the database adapter, the name of the database, and some other stuff, let's move on to the next step.
+
+We have the rails migration to create the table inside the database, let's create add the fields that we need
+
+    class CreateUsers < ActiveRecord::Migration
+      def change
+        create_table :users do |t|
+          t.string :first_name
+          t.string :last_name
+          t.integer :age
+          t.string :status
+          t.string :bio
+        end
+      end
+    end
+
+Create and migrate the database:
+
+    $ rake db:create
+    $ rake db:migrate
+
+Now we have the database table available for our use, let's run the console...
+
+    $ rails console
+
+This console runs internally Active Record, that is the ORM (Object-Relational-Mapper) of our Rails app, this allows you to navigate and try some queries inside the database by using a very simple syntax, we're gonna check if the table exists with the following Active Record query.
+
+    1.9.2-p290 :001 > User
+     => User(id: integer, first_name: string, last_name: string, age: integer, status: string, bio: string, created_at: datetime, updated_at: datetime) 
+
+This command only display the table without the registers, but if we need to show the records of the table we use: 
+
+    1.9.2-p290 :003 > User.all
+    User Load (0.4ms)  SELECT "users".* FROM "users" 
+      => [] 
+
+This is the same as the query that is displayed but with a simpler syntax, and more understandable. With this sense, we need to generate a Controller to display and create Users.
+
+    $ rails generate controller users
