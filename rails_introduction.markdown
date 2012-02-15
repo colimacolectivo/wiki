@@ -244,3 +244,108 @@ This command only display the table without the registers, but if we need to sho
 This is the same as the query that is displayed but with a simpler syntax, and more understandable. With this sense, we need to generate a Controller to display and create Users.
 
     $ rails generate controller users
+
+And we're gonna make main view where we will show all the registers of the users table...
+
+    class UsersController < ApplicationController
+      def index
+        @user = User.all
+      end
+    end
+
+The line placed inside the `index` action `@user = User.all` this is the first interaction of the database that we are making but without the SQL syntax, we're using ActiveRecord, you can test it inside the rails console if you want to.
+
+    1.9.2-p290 :001 > User.all
+      User Load (0.2ms)  SELECT "users".* FROM "users" 
+    => [] 
+
+The views inside rails are with the same name as the controllers, so we need to name the respective view for the previous action definition.
+
+    $ touch app/views/users/index.html.haml
+
+    # This is inside the index view
+    %table
+      %thead
+        %tr
+          %th ID
+          %th First Name
+          %th Last Name
+          %th Age
+          %th Status
+          %th Bio
+      %tbody
+      - @user.each do |user|
+        %tr
+          %td= user.id
+          %td= user.first_name
+          %td= user.last_name
+          %td= user.age
+          %td= user.status
+          %td= user.bio
+
+We're not finished yet with this view, let's get started with this view, the next thing that we're going to do it's to add the respective route to our file `config/routes.rb`.
+
+    match 'users/index' => 'users#index'
+
+This syntax is like this, you can put whatever you want to define the URL in the first part, and in the second part you need to match the controller and the action that you want to show... `http://localhost:3000/users/index/` => controller users, and action index.
+
+And now we have our index, let's create the new user view, we need to place the new view inside our controller
+
+    class UsersController < ApplicationController
+      def index
+        @user = User.all
+      end
+
+      def new
+        @user = User.new
+      end
+
+      def create
+        @user = User.new(params[:user])
+        if @user.save
+          flash[:alert]="User created succesfully"
+          redirect_to "/users/index"
+        else
+          flash[:alert]="There was an error while the user creation"
+        end
+      end
+    end
+
+And add this containers inside the `app/views/layouts/application.html.erb`
+
+    <p class = "notice"></p>
+    <p class = "alert"></p>
+
+Why are we defining two actions inside the controller? Well, that's a simple answer, we are defining the launcher action, and catchin the result with the create action, this is because that's the way that the flow of Rails works. Let's check out this...
+
+    $ touch app/views/users/new.html.haml
+
+    # Inside the new.html.haml view
+    =form_for @user, :url => "create" do |f|
+      = f.label :first_name, "First Name"
+      = f.text_field :first_name
+      %br
+      = f.label :last_name, "Last Name"
+      = f.text_field :last_name
+      %br
+      = f.label :age, "Age"
+      = f.text_field :age
+      %br
+      = f.label :status, "Status"
+      = f.text_field :status
+      %br
+      = f.label :bio, "Bio"
+      = f.text_area :bio
+      %br
+      = f.submit "Create User"
+
+And add the route:
+
+     match 'users/new' => 'users#new', :as => :new_user
+     match 'users/create' => 'users#create', :as => :create_user
+
+Add the respective button to link this views on index of the controller
+
+    ## Some stuff at the end the following
+    = button_to "New User", new_user_path
+    
