@@ -19,7 +19,7 @@ Next to this install the latest version of RVM from github with this command:
 And add the following line to your `.bashrc` file on your user home directory by using your favourite text editor, personally i like vim.
 
     $ vim ~/.bashrc
-    [[ -s "$HOME/.rvm/scripts/rvm" ]] &amp; source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+    [[ -s "$HOME/.rvm/scripts/rvm" ]] ; source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 And reload your bash session with:
 
