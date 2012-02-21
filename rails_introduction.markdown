@@ -285,7 +285,7 @@ The views inside rails are with the same name as the controllers, so we need to 
 
 We're not finished yet with this view, let's get started with this view, the next thing that we're going to do it's to add the respective route to our file `config/routes.rb`.
 
-    match 'users/index' => 'users#index'
+    match 'users' => 'users#index'
 
 This syntax is like this, you can put whatever you want to define the URL in the first part, and in the second part you need to match the controller and the action that you want to show... `http://localhost:3000/users/index/` => controller users, and action index.
 
@@ -304,7 +304,7 @@ And now we have our index, let's create the new user view, we need to place the 
         @user = User.new(params[:user])
         if @user.save
           flash[:alert]="User created succesfully"
-          redirect_to "/users/index"
+          redirect_to "/users"
         else
           flash[:alert]="There was an error while the user creation"
         end
@@ -349,3 +349,105 @@ Add the respective button to link this views on index of the controller
     ## Some stuff at the end the following
     = button_to "New User", new_user_path
     
+Now we have the new form to create users inside our users controller, now what about to create delete users??? Let's do some stuff like that adding the following lines to our controller
+
+    ## next to the last controller on users_controller.rb
+    def delete
+      User.find(params[:id]).delete
+      redirect_to '/users'
+    end
+
+And add some stuff to the index view
+
+    %table
+      %thead
+        %tr
+          %th ID
+          %th First Name
+          %th Last Name
+          %th Age
+          %th Status
+          %th Bio
+          %th Options
+      %tbody
+      - @user.each do |user|
+        %tr
+          %td= user.id
+          %td= user.first_name
+          %td= user.last_name
+          %td= user.age
+          %td= user.status
+          %td= user.bio
+          %td= link_to "Delete", delete_user_path(user.id)
+
+    = button_to "New User", new_user_path 
+
+And modify the routes, just add the following line:
+
+    match 'users/:id/delete' => 'users#delete', :as => :delete_user
+
+This is the way that rails works in this case, we are passing the id fo the user by the url, and that link will be available for our delete action. And what if I want to edit each one of the users, because I make a mistake when I was creating one, ok let's fix that first us, with a little edition action inside the users controller...
+
+    def edit
+      @user = User.find(params[:id])
+    end
+
+    def update
+      @user = User.find(params[:id])
+      @user = User.update_attributes!(parms[:user])
+      redirect_to "/users"
+    end
+
+Change our view again:
+
+    %table
+      %thead
+        %tr
+          %th ID
+          %th First Name
+          %th Last Name
+          %th Age
+          %th Status
+          %th Bio
+          %th Options
+          %th Options
+      %tbody
+      - @user.each do |user|
+        %tr
+          %td= user.id
+          %td= user.first_name
+          %td= user.last_name
+          %td= user.age
+          %td= user.status
+          %td= user.bio
+          %td= link_to "Edit", edit_user_path(user.id)
+          %td= link_to "Delete", delete_user_path(user.id)
+    = button_to "New User", new_user_path 
+
+Add the respective route:
+
+    match 'users/:id/edit' => 'users#edit', :as => :edit_user
+    match 'users/:id/update' => 'users#update'
+
+But now we need to create a custom view for our edition view
+
+    $ touch app/views/users/edit.html.haml
+
+    # Inside the edit.html.haml view
+    =form_for @user, :url => "update" do |f|
+      = f.label :first_name, "First Name"
+      = f.text_field :first_name
+      %br
+      = f.label :last_name, "Last Name"
+      = f.text_field :last_name
+      %br
+      = f.label :age, "Age"
+      = f.text_field :age
+      %br
+      = f.label :status, "Status"
+      = f.text_field :status
+      %br
+      = f.label :bio, "Bio"
+      = f.text_area :bio
+      %br
+      = f.submit "Update User"
